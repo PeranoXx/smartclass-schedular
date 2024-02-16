@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('batches', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('institute_id')->constrained();
+            $table->string('name');
             $table->timestamps();
         });
     }

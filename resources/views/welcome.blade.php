@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('main')
-    <h1>Hello How Are you.</h1>
+    {{-- <h1> hello {{authUser()}}</h1>  --}}
 @endsection

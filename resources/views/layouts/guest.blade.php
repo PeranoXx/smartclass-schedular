@@ -19,7 +19,7 @@
     <div class="flex flex-row w-full">
 
       <!-- Sidebar -->
-      <div class='relative hidden lg:flex flex-col justify-between bg-gray-200 lg:p-8 xl:p-12 lg:max-w-sm xl:max-w-5xl'>
+      <div class='relative hidden lg:flex flex-col justify-between bg-gray-200 lg:p-8 xl:p-12 lg:max-w-sm xl:max-w-4xl'>
         <img src="logo/topography.svg" class="absolute top-0 left-0 w-full h-screen opacity-[0.03] object-cover" alt="">
         <div class="flex items-center justify-start space-x-3">
           {{-- <span class="bg-black rounded-full w-8 h-8"></span>

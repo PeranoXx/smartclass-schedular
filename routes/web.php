@@ -17,7 +17,14 @@ Route::get('/', function(){
     return redirect('sign-up');
 });
 
-Route::get('sign-up', [AuthController::class, 'signUp'])->name('sign-up');
-Route::get('/dashboard', function () {
-    return view('welcome');
-})->name('dashboard');
+Route::middleware('guest:institute')->group(function(){  
+    Route::get('sign-up', [AuthController::class, 'signUp'])->name('sign-up');
+    Route::get('sign-in', [AuthController::class, 'signIn'])->name('sign-in');
+});
+
+Route::middleware('auth')->group(function(){
+    Route::get('logout',[AuthController::class,'logout'])->name('logout');
+    Route::get('/dashboard', function () {
+        return view('welcome');
+    })->name('dashboard');
+});
