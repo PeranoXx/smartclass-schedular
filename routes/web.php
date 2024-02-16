@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\InstituteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,7 @@ Route::middleware('guest:institute')->group(function(){
 
 Route::middleware('auth')->group(function(){
     Route::get('logout',[AuthController::class,'logout'])->name('logout');
+    Route::get('institute/profile', [InstituteController::class,'profile'])->name('institute.profile');
     Route::get('/dashboard', function () {
         return view('welcome');
     })->name('dashboard');
