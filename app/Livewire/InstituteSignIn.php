@@ -23,10 +23,11 @@ class InstituteSignIn extends Component
 
     public function submit(){
         $this->validate();
-        
         if (Auth::guard('institute')->attempt(['email' => $this->email, 'password' => $this->password])) {
+            toastr()->success('Sign in successfully.');
             return redirect()->route('dashboard');
         }else{
+            toastr()->error('Invalid email or password.');
             return back();
         }
     }

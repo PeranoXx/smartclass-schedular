@@ -15,7 +15,7 @@
 </head>
 <body class="text-gray-800 font-inter">
     <!--sidenav -->
-    <div class="fixed left-0 top-0 w-72 h-full bg-[#f8f4f3] p-4 pt-5 z-50 sidebar-menu transition-transform">
+    <div class="fixed left-0 top-0 w-72 h-full bg-white p-4 pt-5 z-50 sidebar-menu transition-transform">
         <a href="#" class="flex items-center pb-5 border-b border-b-gray-800">
             <h2 class="font-bold text-xl">SmartClass <span class="text-rose-500"> Schedular </span></h2>
         </a>
@@ -44,7 +44,7 @@
 
     <main class="w-full md:w-[calc(100%-290px)] md:ml-72 bg-gray-200 min-h-screen transition-all main">
         <!-- navbar -->
-        <div class="py-2 px-6 bg-[#f8f4f3] flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
+        <div class="py-2 px-6 bg-white flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
             <button type="button" class="text-lg text-gray-900 font-semibold sidebar-toggle">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
