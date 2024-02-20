@@ -38,7 +38,6 @@ class InstituteProfile extends Component
                 'address' => 'required',
                 'contact_number' => ['required', 'numeric', 'min:10', Rule::unique('institutes')->ignore(authUser()->id)],
             ]);
-
             if ($this->image) {
                 $imageName = time() . '.' . $this->image->getClientOriginalExtension();
                 $this->image->storeAs('public/institute_image', $imageName);

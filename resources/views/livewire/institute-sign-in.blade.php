@@ -19,6 +19,5 @@
                <x-button type="submit" class="w-full" >SIGN IN</x-button>
             </form>
         </div>
-
     </div>
 </div>

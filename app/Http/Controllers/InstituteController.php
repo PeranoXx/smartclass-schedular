@@ -12,4 +12,8 @@ class InstituteController extends Controller
         return view('institute.profile');
     }
 
+    public function password(){
+        return view('institute.password');
+    }
+
 }
