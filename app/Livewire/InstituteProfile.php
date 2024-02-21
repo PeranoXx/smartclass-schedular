@@ -51,6 +51,7 @@ class InstituteProfile extends Component
                 'image' => $imageName
             ]);
             toastr()->success('Profile updated successfully.');
+            return redirect()->route('institute.profile');
         } catch (\Exception $e) {
             toastr()->error($e->getMessage());
         }

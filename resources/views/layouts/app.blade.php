@@ -66,9 +66,7 @@
                     <button type="button" class="dropdown-toggle flex items-center">
                         <div class="flex-shrink-0 w-10 h-10 relative">
                             <div class="p-1 bg-white rounded-full focus:outline-none focus:ring">
-                                <img class="w-8 h-8 rounded-full" src="https://laravelui.spruko.com/tailwind/ynex/build/assets/images/faces/9.jpg" alt=""/>
-                                <div class="top-0 left-7 absolute w-3 h-3 bg-lime-400 border-2 border-white rounded-full animate-ping"></div>
-                                <div class="top-0 left-7 absolute w-3 h-3 bg-lime-500 border-2 border-white rounded-full"></div>
+                                <img class="w-8 h-8 rounded-full object-cover" src="{{asset('storage/institute_image/' . authUser()->image)}}" alt=""/>
                             </div>
                         </div>
                         <div class="p-2 md:block text-left">

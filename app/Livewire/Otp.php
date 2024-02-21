@@ -31,6 +31,12 @@ class Otp extends Component
             return redirect()->route('dashboard');
         }
         else{
+            $this->first = '';
+            $this->second = '';
+            $this->third = '';
+            $this->fourth = '';
+            $this->fifth = '';
+            $this->sixth = '';
             toastr()->error('Invalid OTP');
         }
     }
