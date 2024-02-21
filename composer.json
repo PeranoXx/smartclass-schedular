@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.4",
         "spatie/laravel-permission": "^6.3",
+        "wire-elements/modal": "^2.0",
         "yoeunes/toastr": "^2.3"
     },
     "require-dev": {
