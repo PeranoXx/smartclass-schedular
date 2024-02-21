@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('main')
-    <livewire:CreateUser />
+    <livewire:CreateUser :id="$id" />
 @endsection

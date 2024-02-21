@@ -37,7 +37,7 @@ class CreateRole extends Component
             toastr()->success('role created successfully.');
         }else{
             // dd($this->role_id);
-            Role::where('id', )->update([
+            Role::where('id', $this->role_id)->update([
                 'name' => $this->name
             ]);
 

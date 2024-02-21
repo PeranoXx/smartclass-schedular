@@ -30,7 +30,8 @@ Route::middleware('auth')->group(function(){
     Route::get('logout',[AuthController::class,'logout'])->name('logout');
     Route::get('institute/profile', [InstituteController::class,'profile'])->name('institute.profile');
     Route::get('institute/password', [InstituteController::class,'password'])->name('institute.password');
-    Route::get('institute/user-management', [UserController::class,'create'])->name('user-management.user');
+    Route::get('institute/user-management/{id?}', [UserController::class,'create'])->name('user-management.user');
+    Route::get('institute/user-management-index', [UserController::class,'show'])->name('user-management.index');
     Route::get('institute/role-permission',[RoleController::class,'create'])->name('role-management.index');
     Route::get('/dashboard', function () {
         return view('welcome');

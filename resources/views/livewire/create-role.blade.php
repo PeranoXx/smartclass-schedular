@@ -39,8 +39,8 @@
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{$data->name}}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{$data->guard_name}}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                            <button wire:click="showModal('{{$data->name}}', '{{$data->id}}')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Edit</button>
-                            <button wire:click="delete('{{$data->id}}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                        <button wire:click="showModal('{{$data->name}}', '{{$data->id}}')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Edit</button>
+                        <button wire:click="delete('{{$data->id}}')" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
                     </td>
                 </tr>
                 @endforeach

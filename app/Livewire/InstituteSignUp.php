@@ -44,9 +44,9 @@ class InstituteSignUp extends Component
             ]);
 
 
-            Notification::route('mail', [
-                $this->email => $this->name,
-            ])->notify(new OneTimePasswordNotification($otp));
+            // Notification::route('mail', [
+            //     $this->email => $this->name,
+            // ])->notify(new OneTimePasswordNotification($otp));
 
             toastr()->success('Sign up successfully.');
 

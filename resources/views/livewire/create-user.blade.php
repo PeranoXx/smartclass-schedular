@@ -53,11 +53,18 @@
                         <x-input label="image" type="file" wire:model="photo"></x-input>
                         @error('photo') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
                     </div>
+                    <div>
+                        <label>select role :</label>
+                        <select wire:model="role">
+                            <option value="0" disabled selected>Please select role</option>
+                            @foreach ($role_data as $data)
+                                <option value="{{$data->name}}">{{$data->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                <x-button type="submit" class="w-full" >SUBMIT</x-button>
             </form>
         </div>
-
     </div>
 </div>
-''
