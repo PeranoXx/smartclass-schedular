@@ -21,4 +21,8 @@ class AuthController extends Controller
             return redirect()->route('sign-in');
         }
     }
+
+    public function verifyEmail(){
+        return view('verify');
+    }
 }

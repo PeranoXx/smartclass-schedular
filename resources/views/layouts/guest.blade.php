@@ -19,20 +19,26 @@
     <div class="flex flex-row w-full">
 
       <!-- Sidebar -->
-      <div class='relative hidden lg:flex flex-col justify-between bg-gray-200 lg:p-8 xl:p-12 lg:max-w-sm xl:max-w-4xl'>
+      <div class='relative hidden lg:flex flex-col justify-evenly bg-gray-200 lg:p-8 xl:p-12 lg:max-w-sm xl:max-w-4xl'>
         <img src="logo/topography.svg" class="absolute top-0 left-0 w-full h-screen opacity-[0.03] object-cover" alt="">
         <div class="flex items-center justify-start space-x-3">
-          {{-- <span class="bg-black rounded-full w-8 h-8"></span>
-          <a href="#" class="font-medium text-xl">Brand</a> --}}
         </div>
-        <div class='space-y-5'>
+        <div class='space-y-5 static z-10'>
           <h1 class="lg:text-3xl xl:text-5xl xl:leading-snug font-extrabold">SmartClass <span class="text-red-500">Schedular</span></h1>
           <p class="text-lg">Discover SmartClass Scheduler : <b>AI-generated timetables</b> and integrated <b>chat system</b> for effortless education management. Simplify scheduling and stay connected seamlessly. Get started now! </p>
           {{-- <button
             class="inline-block flex-none px-4 py-3 border-2 rounded-lg font-medium border-black bg-black text-white">Create
             account here</button> --}}
         </div>
-        <p class="font-medium">© 2022 Company</p>
+        <div class="static z-10 flex gap-x-10 mb-20">
+          <a href="">
+            <x-button>Faculty Login</x-button>
+          </a>
+          <a href="">
+            <x-button>Student Login</x-button>
+          </a>
+        </div>
+        {{-- <p class="font-medium">© {{date("Y")}} Company</p> --}}
       </div>
 
       <!-- Login -->

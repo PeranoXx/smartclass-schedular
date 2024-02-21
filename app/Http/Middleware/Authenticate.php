@@ -15,7 +15,12 @@ class Authenticate
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    {
+    {   
+        if(Auth::guard('institute')->check()){
+            if(empty(authUser()->email_verified_at)){
+                return redirect()->route('email-verify');
+            }
+        }
         if (!Auth::guard('institute')->check()) {
             return redirect('sign-in');
         }

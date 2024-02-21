@@ -16,8 +16,15 @@
                         @error('password') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
                     </div>
                 </div>
-               <x-button type="submit" class="w-full" >SIGN IN</x-button>
+               <x-button type="submit" class="w-full" wire:loading.class="opacity-50 cursor-not-allowed">SIGN IN</x-button>
             </form>
+            <div class="py-4 relative">
+                <hr>
+                <span class="bg-white absolute top-2/4 -translate-y-1/2 left-1/2 -translate-x-1/2 px-2">OR</span>
+            </div>
+            <div class="text-center">
+                 Create new Account. <a href="{{route('sign-up')}}" class="text-rose-500 hover:underline transition duration-100">Sign Up</a>
+            </div>
         </div>
     </div>
 </div>

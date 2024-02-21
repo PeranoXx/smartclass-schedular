@@ -25,6 +25,7 @@ Route::middleware('guest:institute')->group(function(){
     Route::get('sign-in', [AuthController::class, 'signIn'])->name('sign-in');
 });
 
+Route::get('verify-email', [AuthController::class, 'verifyEmail'])->name('email-verify');
 Route::middleware('auth')->group(function(){
     Route::get('logout',[AuthController::class,'logout'])->name('logout');
     Route::get('institute/profile', [InstituteController::class,'profile'])->name('institute.profile');
