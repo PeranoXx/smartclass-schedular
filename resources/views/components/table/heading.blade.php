@@ -3,11 +3,11 @@
     'direction' => null,
 ])
 
-<th {{ $attributes->merge(['class' => 'px-6 py-3 bg-gray-50'])}}>
+<th {{ $attributes->merge(['class' => 'px-6 py-3 bg-gray-50 cursor-pointer'])}}>
     @unless ($sortable)
-        <span class=" text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{$slot}}</span>
+        <span class="flex item-center space-x-1 text-left text-xs uppercase leading-4 font-medium tracking-wider items-center">{{$slot}}</span>
         @else
-        <button {{$attributes->except('class')}} class="flex item-center space-x-1 text-left text-xs leading-4 font-medium items-center">
+        <button class="flex item-center space-x-1 text-left text-xs uppercase leading-4 font-medium tracking-wider items-center">
             <span>{{$slot}}</span>
 
             <span>
@@ -24,7 +24,9 @@
                       </svg>
                       </p>
                 @else
-                    
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 hidden ">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                  </svg>
                 @endif
             </span>
         </button>

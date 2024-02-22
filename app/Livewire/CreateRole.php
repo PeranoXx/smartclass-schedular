@@ -10,20 +10,24 @@ class CreateRole extends Component
 {
     use WithPagination;
 
-    public $searchName = '';
-    public $searchGname = '';
-    public $sortField;
+    public $search = '';
+    public $sortField = 'id';
     public $sortDirection = 'asc';
 
     public function sortBy($field)
     {
+        if($this->sortField == $field){
+            $this->sortDirection = $this->sortDirection == 'asc' ? 'desc' : 'asc';
+        }else{
+            $this->sortDirection = 'asc';
+        }
         $this->sortField = $field;
     }
 
     public function render()
     {
         return view('livewire.create-role',[
-            'role' => Role::where('name', 'like', '%'.$this->searchName.'%')->where('guard_name', 'like', '%'.$this->searchGname.'%')->orderBy($this->sortField,$this->sortDirection)->paginate(10),
+            'role' => Role::where('name', 'like', '%'.$this->search.'%')->orWhere('guard_name', 'like', '%'.$this->search.'%')->orderBy($this->sortField, $this->sortDirection)->paginate(10),
         ]);
     }
 
