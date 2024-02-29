@@ -12,6 +12,7 @@ class CreateUser extends Component
 {
     use WithFileUploads;
 
+    public $imagePreview;
     public $id;
     public $first_name;
     public $last_name;
@@ -23,23 +24,42 @@ class CreateUser extends Component
     public $photo;
     public $role = 0;
 
+    public function mount(){
+        $user = User::find($this->id);
+        
+        $this->first_name = $user->first_name;
+        $this->last_name = $user->last_name;
+        $this->email = $user->email;
+        $this->contact_number = $user->contact_number;
+        $this->gender = $user->gender;
+        $this->birth_date = $user->birth_date;
+        $this->role = $user->role;
+        $this->imagePreview = $user->image ? asset('storage/user_image/' . $user->image)  : NULL;
+    }
+
     public function render(Request $request)
     {
+        // dd($this->id);
         $role_data = Role::all();
         return view('livewire.create-user',compact('role_data'));
+        $this->imagePreview = $this->photo ? asset('storage/user_image/' . $this->photo)  : NULL;
     }
 
     public function submit(){
-        $this->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'contact_number' => 'required|unique:users|min:10|numeric',
-            'email' => 'required|unique:users|email',
-            'password' => 'required|min:8',
-            'gender' => 'required|string|in:male,female,others',
-            'birth_date' => 'required',
-            'photo' => 'required|image'
-        ]);
+        try {
+            $rules = [
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'contact_number' => 'required|unique:users|min:10|numeric',
+                'email' => 'required|unique:users|email',
+                'gender' => 'required|string|in:male,female,others',
+                'birth_date' => 'required',
+                'photo' => 'required|image'
+            ];
+            if (!$this->id) {
+                $rules['password'] = 'required|min:8';
+            }
+        $this->validate($rules);
 
         if ($this->photo) {
             $imageName = time() . '.' . $this->photo->getClientOriginalExtension();
@@ -62,12 +82,11 @@ class CreateUser extends Component
             // dd($this->role);
             toastr()->success("User created successfully");
          }else {
-            User::where('id', $this->id )->update([
+            $user = User::where('id', $this->id )->update([
                 'first_name' => $this->first_name,
                 'last_name' => $this->last_name,
                 'contact_number' => $this->contact_number,
                 'email' => $this->email,
-                'password' => $this->password,
                 'gender' => $this->gender,
                 'birth_date' => $this->birth_date,
                 'image' => $imageName
@@ -75,5 +94,12 @@ class CreateUser extends Component
             toastr()->success("User updated successfully");
          }
          return redirect()->route('user-management.index');
+        }catch(\Exception $e){
+            toastr()->error($e->getMessage());
+        }
+    }
+    public function removeImage(){
+        $this->photo = NULL;
+        $this->imagePreview = NULL;
     }
 }

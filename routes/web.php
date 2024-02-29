@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\BatchController;
+use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\InstituteController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -32,7 +34,10 @@ Route::middleware('auth')->group(function(){
     Route::get('institute/password', [InstituteController::class,'password'])->name('institute.password');
     Route::get('institute/user-management/{id?}', [UserController::class,'create'])->name('user-management.user');
     Route::get('institute/user-management-index', [UserController::class,'show'])->name('user-management.index');
+    // Route::get('institute/user-management-update/{id?}', [UserController::class,'update'])->name('user-management.update');
     Route::get('institute/role-permission',[RoleController::class,'create'])->name('role-management.index');
+    Route::get('institute/class-manaegement',[ClassRoomController::class,'create'])->name('class-management.index');
+    Route::get('institute/batch-manaegement',[BatchController::class,'create'])->name('batch-management.index');
     Route::get('/dashboard', function () {
         return view('welcome');
     })->name('dashboard');

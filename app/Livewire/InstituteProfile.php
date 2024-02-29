@@ -24,7 +24,7 @@ class InstituteProfile extends Component
         $this->contact_number = authUser()->contact_number;
         $this->imagePreview = authUser()->image ? asset('storage/institute_image/' . authUser()->image)  : NULL;
     }
-
+    
     public function render()
     {
         return view('livewire.institute-profile');

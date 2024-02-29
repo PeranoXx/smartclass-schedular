@@ -35,6 +35,10 @@ class UserList extends Component
         return view('livewire.user-list',compact('users'));
     }
 
+    public function update(){
+        
+    }
+
     public function delete($id){
         User::where('id',$id)->delete();
     }

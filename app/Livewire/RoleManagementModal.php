@@ -8,7 +8,6 @@ use LivewireUI\Modal\ModalComponent;
 
 class RoleManagementModal extends ModalComponent
 {
-
     public $id;
     public $name;
     public $role_id;
@@ -17,7 +16,6 @@ class RoleManagementModal extends ModalComponent
     {
         return view('livewire.role-management-modal');
     }
-
 
     public function submit(){
         

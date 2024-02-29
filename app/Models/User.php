@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -22,6 +24,15 @@ class User extends Authenticatable
     protected $table = 'users';
 
     protected $guarded = ['id'];
+
+    protected static function booted(): void
+    {
+        if(auth('institute')->check()){
+            static::addGlobalScope('institute', function (Builder $builder) {
+                $builder->where('institute_id', authUser()->id);
+            });
+        }
+    }
 
     /**
      * The attributes that should be hidden for serialization.

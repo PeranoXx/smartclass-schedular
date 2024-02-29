@@ -18,8 +18,8 @@
         <div class="flex-col space-y-4">
             <x-table>
                 <x-slot name="head">
-                    <x-table.heading wire:click="sortBy('id')" :direction="$sortField == 'id' ? $sortDirection : null"
-                        sortable>Id</x-table.heading>
+                    {{-- <x-table.heading wire:click="sortBy('id')" :direction="$sortField == 'id' ? $sortDirection : null"
+                        sortable>Id</x-table.heading> --}}
                     <x-table.heading wire:click="sortBy('image')"
                         :direction="$sortField == 'image' ? $sortDirection : null">Profile</x-table.heading>
                     <x-table.heading wire:click="sortBy('first_name')"
@@ -41,7 +41,7 @@
                 <x-slot name="body">
                     @foreach ($users as $data)
                     <x-table.row>
-                        <x-table.cell>{{ $data->id }}</x-table.cell>
+                        {{-- <x-table.cell>{{ $data->id }}</x-table.cell> --}}
                         <x-table.cell> <img src="{{asset('storage/user_image/'.$data->image)}}"
                                 class="w-12 h-12 object-cover rounded-[50%]" alt=""> </x-table.cell>
                         <x-table.cell>{{ $data->first_name }}</x-table.cell>
@@ -51,17 +51,13 @@
                         <x-table.cell>{{ $data->birth_date }}</x-table.cell>
                         <x-table.cell>
                             <div class="flex gap-x-4">
-                                <button
-                                    onclick="Livewire.dispatch('openModal', { component: 'role-management-modal', arguments: { role_id: {{ $data->id }} , name: '{{$data->name}}' }})"
-                                    class="">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                                    </svg>
-
-
-                                </button>
+                                    <a href="{{route('user-management.user', ['id' => $data->id])}}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                                        </svg>
+                                    </a>
                                 <button wire:click="delete('{{$data->id}}')" class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">

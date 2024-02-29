@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 class RoleController extends Controller
 {
     public function create(){
-        return view('role-management.index');
-        
+        return view('role-management.index');  
     }
-
 }

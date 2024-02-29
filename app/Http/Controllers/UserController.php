@@ -13,4 +13,8 @@ class UserController extends Controller
     public function show(){
         return view('user-management.index'); 
     }
+
+    public function update(){
+        return view('user-management.update');
+    }
 }
