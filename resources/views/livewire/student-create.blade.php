@@ -2,7 +2,7 @@
     <div class="p-5 text-center">
         <h4
             class="text-3xl mb-8 font-bold">
-            {{isset($id) ? 'Update' : 'Create New'}} User
+            {{isset($id) ? 'Update' : 'Create New'}} Student
         </h4>
         <form wire:submit.prevent="submit" class="max-w-4xl mx-auto my-8">
             <div class="grid grid-cols-2 gap-5">
@@ -15,21 +15,51 @@
                     </div>
                     <div>
                         <x-input class="" label="Last name" wire:model="last_name"></x-input>
-                        <div class="flex justify-strat">
+                        <div class="flex justify-start">
                             @error('last_name') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
                         </div>
                     </div>
                 {{-- </div> --}}
+                <div>
+                    <x-input class="" label="Username" wire:model="username"></x-input>
+                    <div class="flex justify-start">
+                        @error('username') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
+                    </div>
+                </div>
                 <div>
                     <x-input label="Email"  wire:model="email"></x-input>
                     <div class="flex justify-start">
                         @error('email') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
                     </div>
                 </div>
+                <div>
+                    <x-input class="" label="Father name" wire:model="father_name"></x-input>
+                    <div class="flex justify-start">
+                        @error('father_name') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                <div>
+                    <x-input class="" label="Father contact number" wire:model="father_contact_number"></x-input>
+                    <div class="flex justify-start">
+                        @error('father_contact_number') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                <div>
+                    <x-input class="" label="Mother name" wire:model="mother_name"></x-input>
+                    <div class="flex justify-start">
+                        @error('mother_name') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                <div>
+                    <x-input class="" label="Mother contact number" wire:model="mother_contact_number"></x-input>
+                    <div class="flex justify-start">
+                        @error('mother_contect_number') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
+                    </div>
+                </div>
                 @if (!isset($id))
                     <div>
                         <x-input class="" label="Password" type="password"  wire:model="password"></x-input>
-                        <div class="flex justify-start">
+                        <div class="flex justify-strat">
                             @error('password') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
                         </div>
                     </div>
@@ -41,40 +71,48 @@
                     </div>
                 </div>
                 <div>
-                <div class="main flex overflow-hidden border border-gray-300 select-none">
-                  <div class="title py-3 my-auto px-5 bg-gray-900 text-white text-sm font-semibold mr-3">Gender</div>
-                  <label class="flex radio p-2 cursor-pointer">
-                    <input class="my-auto transform scale-125" type="radio" value="male" wire:model="gender" />
-                    <div class="title px-2">Male</div>
-                  </label>
-              
-                  <label class="flex radio p-2 cursor-pointer">
-                    <input class="my-auto transform scale-125" type="radio" value="female" wire:model="gender" />
-                    <div class="title px-2">Female</div>
-                  </label>
-              
-                  <label class="flex radio p-2 cursor-pointer">
-                    <input class="my-auto transform scale-125" type="radio" value="others" wire:model="gender" />
-                    <div class="title px-2">Others</div>
-                  </label>
-                  
-                </div>
-                <div class="flex justify-start">
-                    @error('gender') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
-                </div>
-            </div>
+                    <div class="main flex overflow-hidden border border-gray-300 select-none">
+                        <div class="title py-3 my-auto px-5 bg-gray-900 text-white text-sm font-semibold mr-3">Gender</div>
+                            <label class="flex radio p-2 cursor-pointer">
+                                <input class="my-auto transform scale-125" type="radio" value="male" wire:model="gender" />
+                                <div class="title px-2">Male</div>
+                            </label>
+                        
+                            <label class="flex radio p-2 cursor-pointer">
+                                <input class="my-auto transform scale-125" type="radio" value="female" wire:model="gender" />
+                                <div class="title px-2">Female</div>
+                            </label>
+                        
+                            <label class="flex radio p-2 cursor-pointer">
+                                <input class="my-auto transform scale-125" type="radio" value="others" wire:model="gender" />
+                                <div class="title px-2">Others</div>
+                            </label>
+                        </div>
+                        <div class="flex justify-strat">
+                            @error('gender') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
+                        </div>
+                    </div>
                 <div>
                     <x-input class="" label="Birth date" type="date" wire:model="birth_date"></x-input>
-                    <div class="flex jusrrtify-start">
+                    <div class="flex justify-start">
                         @error('birth_date') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
                     </div>
                 </div>
-                <div class="w-full text-center bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2.5 px-3 block appearance-none leading-normal focus:border-gray-800">
-                    <label class="">select role :</label>
-                    <select wire:model="role" class="">
-                        <option value="0" disabled selected>Please select role</option>
-                        @foreach ($role_data as $data)
-                            <option value="{{$data->name}}">{{$data->name}}</option>
+                <div class="border border-gray-400">
+                    <label>select class :</label>
+                    <select wire:model.live="class_room">
+                        <option value="0" disabled selected>Please select class</option>
+                        @foreach ($class_data as $class_room)
+                            <option value="{{$class_room->id}}">{{$class_room->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="border border-gray-400">
+                    <label>select class :</label>
+                    <select wire:model.live="batch_id" wire:key="{{$class_room}}">
+                        <option value="0" disabled selected>Please select batch</option>
+                        @foreach ($batch as $data)
+                            <option value="{{$data->id}}">{{$data->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -126,8 +164,10 @@
                     </div>
                 </div>
                 <input label="user id" value="" type="hidden"  name="name" wire:model="id" />
+                <input label="Class id" type="hidden"  name="name" wire:model="class_id" />
             </div>
            <x-button type="submit" class="w-full mt-5" >{{isset($id) ? 'UPDATE' : 'SUBMIT'}}</x-button>
         </form>
     </div>
 </div>
+

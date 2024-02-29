@@ -33,12 +33,13 @@ class InstituteProfile extends Component
 
     public function update()
     {
+        $this->validate([
+            'name' => ['required', Rule::unique('institutes')->ignore(authUser()->id)],
+            'address' => 'required',
+            'contact_number' => ['required', 'numeric', 'min:10', Rule::unique('institutes')->ignore(authUser()->id)],
+        ]);
         try {
-            $this->validate([
-                'name' => ['required', Rule::unique('institutes')->ignore(authUser()->id)],
-                'address' => 'required',
-                'contact_number' => ['required', 'numeric', 'min:10', Rule::unique('institutes')->ignore(authUser()->id)],
-            ]);
+           
             if ($this->image) {
                 $imageName = time() . '.' . $this->image->getClientOriginalExtension();
                 $this->image->storeAs('public/institute_image', $imageName);

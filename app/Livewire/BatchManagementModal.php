@@ -13,7 +13,6 @@ class BatchManagementModal extends ModalComponent
     public $name;
     public $batch_id;
     public $class = 0; 
-    public $class_id;
 
     public function render()
     {
@@ -21,9 +20,8 @@ class BatchManagementModal extends ModalComponent
         $class_data = ClassRoom::all();
         return view('livewire.batch-management-modal',compact('class_data'));
     }
-
+    
     public function submit(){
-        // dd($this->class);
         $this->validate([
             'name' => ['required', Rule::unique('batches')->ignore($this->batch_id)],
         ]);
