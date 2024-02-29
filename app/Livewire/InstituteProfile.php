@@ -17,6 +17,11 @@ class InstituteProfile extends Component
     public $address;
     public $contact_number;
 
+    public function render()
+    {
+        return view('livewire.institute-profile');
+    }
+
     public function mount()
     {
         $this->name = authUser()->name;
@@ -25,10 +30,6 @@ class InstituteProfile extends Component
         $this->imagePreview = authUser()->image ? asset('storage/institute_image/' . authUser()->image)  : NULL;
     }
     
-    public function render()
-    {
-        return view('livewire.institute-profile');
-    }
 
     public function update()
     {

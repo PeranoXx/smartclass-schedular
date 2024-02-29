@@ -17,13 +17,15 @@
                     </div>
                 {{-- </div> --}}
                 <div>
-                    <x-input class="" label="Email"  wire:model="email"></x-input>
+                    <x-input label="Email"  wire:model="email"></x-input>
                     @error('email') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
                 </div>
-                <div>
-                    <x-input class="" label="Password" type="password"  wire:model="password"></x-input>
-                    @error('password') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
-                </div>
+                @if (!isset($id))
+                    <div>
+                        <x-input class="" label="Password" type="password"  wire:model="password"></x-input>
+                        @error('password') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
+                    </div>
+                @endif
                 <div class="">
                     <x-input class="" label="Contact number" wire:model="contact_number"></x-input>
                     @error('contact_number') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
