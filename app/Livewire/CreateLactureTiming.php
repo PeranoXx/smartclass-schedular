@@ -11,7 +11,16 @@ class CreateLactureTiming extends Component
     public $lacture_name;
     public $start_time;
     public $end_time;
-    public $weeks = [];
+    // public $weeks = [];
+    public $weeks = [
+        ["day" => "monday", "status" => false],
+        ["day" => "tuesday", "status" => false],
+        ["day" => "wednesday", "status" => false],
+        ["day" => "thursday", "status" => false],
+        ["day" => "friday", "status" => false],
+        ["day" => "saturday", "status" => false],
+        ["day" => "sunday", "status" => false]
+    ];
     public $is_break = false;
     public $resultObject = [];
 
@@ -23,13 +32,18 @@ class CreateLactureTiming extends Component
             $this->start_time = $lacture->start_time;
             $this->end_time = $lacture->end_time;
             $this->is_break = $lacture->is_break;
+
+            $weeksArray = json_decode($lacture->weeks, true);
+
+            foreach ($this->weeks as $index => $week) {
+                $this->weeks[$index]['status'] = $weeksArray[$index]['status'];
+            }
         }
     }
 
     public function render()
     {
         $lactures = LactureTiming::find($this->id);
-        // dd($lactures->weeks);
         return view('livewire.create-lacture-timing', compact('lactures'));
     }
 
@@ -45,11 +59,11 @@ class CreateLactureTiming extends Component
             'weeks' => ['required']
         ]);
 
-        $daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+        // $daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
         $resultArray = [];
-        foreach ($daysOfWeek as $day) {
+        foreach ($this->weeks as $day) {
             $status = in_array($day, $this->weeks);
-            $resultArray[] = ['day' => $day, 'status' => $status];
+            $resultArray = [$day, $status];
         }
         $this->resultObject = json_encode($resultArray);
 

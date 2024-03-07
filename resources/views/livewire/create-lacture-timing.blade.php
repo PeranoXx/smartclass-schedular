@@ -26,27 +26,17 @@
                 </div>
                 <div class="flex items-center justify-center">
                     <label for="">Is Break</label>
-                    <input type="checkbox" wire:model="is_break" {{$lactures->is_break == 1 ? 'checked' : ''}} class="appearance-none w-9 focus:outline-none checked:bg-blue-300 h-5 bg-gray-300 rounded-full before:inline-block before:rounded-full before:bg-blue-500 before:h-4 before:w-4 checked:before:translate-x-full shadow-inner transition-all duration-300 before:ml-0.5"/>
+                    <input type="checkbox" wire:model="is_break" {{ isset($lactures->is_break) == '1' ? 'checked' : '' }} class="appearance-none w-9 focus:outline-none checked:bg-blue-300 h-5 bg-gray-300 rounded-full before:inline-block before:rounded-full before:bg-blue-500 before:h-4 before:w-4 checked:before:translate-x-full shadow-inner transition-all duration-300 before:ml-0.5"/>
                 </div>
-                {{dd($lactures->weeks)}}
                 <div class="">
                     <div>
                         <label for="">Weeks</label>
                     </div>
-                    <label for="checkbox1">Monday</label>
-                    <input id="checkbox1" type="checkbox" value="monday" wire:model="weeks"/>
-                    <label for="checkbox2">Tuesday</label>
-                    <input id="checkbox2" type="checkbox" value="tuesday" wire:model="weeks"/>
-                    <label for="checkbox3">Wednesday</label>
-                    <input id="checkbox3" type="checkbox" value="wednesday" wire:model="weeks"/>
-                    <label for="checkbox4">Thursday</label>
-                    <input id="checkbox4" type="checkbox" value="thursday" wire:model="weeks"/>
-                    <label for="checkbox5">Friday</label>
-                    <input id="checkbox5" type="checkbox" value="friday" wire:model="weeks"/>
-                    <label for="checkbox6">Saturday</label>
-                    <input id="checkbox6" type="checkbox" value="saturday" wire:model="weeks"/>
-                    <label for="checkbox7">sunday</label>
-                    <input id="checkbox7" type="checkbox" value="sunday" wire:model="weeks"/>
+                    @foreach ($weeks as $index => $day)
+                        <input id="{{ $day['day'] }}" type="checkbox" wire:model="weeks.{{ $index }}.status" {{ $day['status'] == 'true' ? 'checked' : '' }}>
+                        <label for="{{ $day['day'] }}">{{ $day['day'] }}</label>
+                    @endforeach
+                    
                 </div>
             </div>  
             <x-button>{{isset($id) ? 'UPDATE' : 'SUBMIT'}}</x-button>
