@@ -108,7 +108,7 @@
                     </select>
                 </div>
                 <div class="border border-gray-400">
-                    <label>select class :</label>
+                    <label>select batch :</label>
                     <select wire:model.live="batch_id" wire:key="{{$class_room}}">
                         <option value="0" disabled selected>Please select batch</option>
                         @foreach ($batch as $data)
@@ -163,7 +163,7 @@
                         @error('image') <span class="text-pink-500 text-sm px-3">{{ $message }}</span>@enderror
                     </div>
                 </div>
-                <input label="user id" value="" type="hidden"  name="name" wire:model="id" />
+                <input label="student id" value="" type="hidden"  name="name" wire:model="id" />
                 <input label="Class id" type="hidden"  name="name" wire:model="class_id" />
             </div>
            <x-button type="submit" class="w-full mt-5" >{{isset($id) ? 'UPDATE' : 'SUBMIT'}}</x-button>

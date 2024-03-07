@@ -1,6 +1,6 @@
 <div>
     <div class="flex justify-end">
-        <x-button class="mt-1"><a href="{{route('user-management.user')}}"> Create user</a></x-button>
+        <x-button class="mt-1"><a href="{{route('lacture-management.create')}}"> Create Lacture Timing</a></x-button>
     </div>
     <div class="relative w-1/5">
         <input wire:model.live="search" placeholder="search..."
@@ -11,7 +11,6 @@
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
             </svg>
-
         </span>
     </div>
     <div class="py-4">
@@ -20,48 +19,37 @@
                 <x-slot name="head">
                     {{-- <x-table.heading wire:click="sortBy('id')" :direction="$sortField == 'id' ? $sortDirection : null"
                         sortable>Id</x-table.heading> --}}
-                    <x-table.heading wire:click="sortBy('image')"
-                        :direction="$sortField == 'image' ? $sortDirection : null">Profile</x-table.heading>
-                    <x-table.heading wire:click="sortBy('first_name')"
-                        :direction="$sortField == 'first_name' ? $sortDirection : null" sortable>First Name
+                    <x-table.heading wire:click="sortBy('lacture_name')"
+                        :direction="$sortField == 'first_name' ? $sortDirection : null" sortable>Lacture Name
                     </x-table.heading>
-                    <x-table.heading wire:click="sortBy('last_name')"
-                        :direction="$sortField == 'first_name' ? $sortDirection : null" sortable>Last Name
+                    <x-table.heading wire:click="sortBy('start_time')"
+                        :direction="$sortField == 'first_name' ? $sortDirection : null" sortable>Start Time
                     </x-table.heading>
-                    <x-table.heading wire:click="sortBy('email')"
-                        :direction="$sortField == 'email' ? $sortDirection : null" sortable>Email</x-table.heading>
+                    <x-table.heading wire:click="sortBy('end_time')"
+                        :direction="$sortField == 'email' ? $sortDirection : null" sortable>End Time</x-table.heading>
                     <x-table.heading wire:click="sortBy('gender')"
-                        :direction="$sortField == 'gender' ? $sortDirection : null" sortable>Gender</x-table.heading>
+                        :direction="$sortField == 'gender' ? $sortDirection : null" sortable>Is Break</x-table.heading>
                     <x-table.heading wire:click="sortBy('role')"
-                        :direction="$sortField == 'gender' ? $sortDirection : null" sortable>Role</x-table.heading>
-                    <x-table.heading wire:click="sortBy('birth_date')"
-                        :direction="$sortField == 'birth_date' ? $sortDirection : null" sortable>Birth Date
-                    </x-table.heading>
-                    <x-table.heading>Action</x-table.heading>
+                        :direction="$sortField == 'gender' ? $sortDirection : null" sortable>Weeks</x-table.heading>
                 </x-slot>
 
                 <x-slot name="body">
-                    @foreach ($users as $data)
+                    @foreach ($lacture_data as $data)
                     <x-table.row>
-                        {{-- <x-table.cell>{{ $data->id }}</x-table.cell> --}}
-                        <x-table.cell> <img src="{{asset('storage/user_image/'.$data->image)}}"
-                                class="w-12 h-12 object-cover rounded-[50%]" alt=""> </x-table.cell>
-                        <x-table.cell>{{ $data->first_name }}</x-table.cell>
-                        <x-table.cell>{{ $data->last_name }}</x-table.cell>
-                        <x-table.cell>{{ $data->email }}</x-table.cell>
-                        <x-table.cell>{{ $data->gender }}</x-table.cell>
-                        <x-table.cell>{{ $data->roles[0]['name']??'--' }}</x-table.cell>
-                        <x-table.cell>{{ $data->birth_date }}</x-table.cell>
+                        <x-table.cell>{{ $data->lacture_name }}</x-table.cell> 
+                        <x-table.cell>{{ $data->start_time }}</x-tablecell> 
+                        <x-table.cell>{{ $data->end_time }}</x-table.cell> 
+                        <x-table.cell>{{ $data->is_break }}</x-table.cell> 
                         <x-table.cell>
                             <div class="flex gap-x-4 items-center">
-                                    <a href="{{route('user-management.user', ['id' => $data->id])}}">
+                                    <a href="{{route('lacture-management.create', ['id' => $data->id])}}">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                                         </svg>
                                     </a>
-                                <button class="flex" wire:click="delete('{{$data->id,$data->first_name,$data->last_name,$data->email,$data->gender,$data->birth_date}}')" class="">
+                                <button class="flex" wire:click="delete('{{--{{$data->id}}--}}')" class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -69,7 +57,6 @@
                                     </svg>
 
                                 </button>
-                                <x-button class="px-12"><a href="{{route('assign-user-subject.index', ['id' => $data->id])}}">Assign Subject</a></x-button>
                             </div>
                         </x-table.cell>
                     </x-table.row>
@@ -77,7 +64,7 @@
                 </x-slot>
             </x-table>
             <div>
-                {{ $users->links() }}
+                {{-- {{ $users->links() }} --}}
             </div>
         </div>
     </div>

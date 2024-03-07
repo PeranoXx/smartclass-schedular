@@ -2,46 +2,46 @@
 
 namespace App\Livewire;
 
-use App\Models\ClassRoom;
+use App\Models\Subject;
+use Livewire\Component;
 use Illuminate\Validation\Rule;
 use LivewireUI\Modal\ModalComponent;
 
-class ClassManagementModal extends ModalComponent
+class SubjectManagementModal extends ModalComponent
 {
     public $id;
     public $name;
-    public $class_id;
+    public $subject_id;
 
     public function render()
     {
-        return view('livewire.class-management-modal');
+        return view('livewire.subject-management-modal');
     }
-
     public function submit(){
         
         $this->validate([
-            'name' => ['required', Rule::unique('class_rooms')->where(function ($query) {
+            'name' => ['required', Rule::unique('subjects')->where(function ($query) {
                 // Add your additional condition here
                 $query->where('institute_id', authUser()->id);
-            })->ignore($this->class_id)],
+            })->ignore($this->subject_id)],
         ]);
-        if(!isset($this->class_id)){
-            ClassRoom::create([
+        if(!isset($this->subject_id)){
+            Subject::create([
                 'institute_id' => authUser()->id,
                 'name' => $this->name,
             ]);
-            toastr()->success('class created successfully.');
+            toastr()->success('subject created successfully.');
         }else{
-            ClassRoom::where('id', $this->class_id)->update([
+            Subject::where('id', $this->subject_id)->update([
                 'name' => $this->name
             ]);
-            toastr()->success('class updated successfully.');
+            toastr()->success('subject updated successfully.');
         }
 
         $this->closeModal();
-        return redirect()->route('class-management.index');
+        return redirect()->route('subject-management.index');
     }
-    
+
     public function close(){
         $this->closeModal();
     }

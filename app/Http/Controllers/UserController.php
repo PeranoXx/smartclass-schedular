@@ -17,4 +17,8 @@ class UserController extends Controller
     public function update(){
         return view('user-management.update');
     }
+
+    public function createSubject(Request $request, $id = NULL){
+        return view('user-management.assign-subject', ['id' => $id]);
+    }
 }

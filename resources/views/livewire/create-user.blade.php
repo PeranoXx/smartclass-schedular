@@ -69,14 +69,19 @@
                         @error('birth_date') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
                     </div>
                 </div>
-                <div class="w-full text-center bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2.5 px-3 block appearance-none leading-normal focus:border-gray-800">
-                    <label class="">select role :</label>
-                    <select wire:model="role" class="">
-                        <option value="0" disabled selected>Please select role</option>
-                        @foreach ($role_data as $data)
-                            <option value="{{$data->name}}">{{$data->name}}</option>
-                        @endforeach
-                    </select>
+                <div>
+                    <div class="w-full text-center bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2.5 px-3 block appearance-none leading-normal focus:border-gray-800">
+                        <label class="">select role :</label>
+                        <select wire:model="role" class="">
+                            <option value="0" disabled selected>Please select role</option>
+                            @foreach ($role_data as $data)
+                                <option value="{{$data->name}}">{{$data->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="flex jusrrtify-start">
+                        @error('role') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
+                    </div>
                 </div>
                 <div class="bg-white col-span-2 w-full mb-5">
                     <div

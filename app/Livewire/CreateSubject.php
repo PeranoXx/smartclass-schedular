@@ -2,11 +2,11 @@
 
 namespace App\Livewire;
 
-use App\Models\Student;
+use App\Models\Subject;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class StudentList extends Component
+class CreateSubject extends Component
 {
     use WithPagination;
 
@@ -23,18 +23,16 @@ class StudentList extends Component
         }
         $this->sortField = $field;
     }
-
+    
     public function render()
     {
-        $students = Student::where('first_name', 'like', '%'.$this->search.'%')
-                    ->orWhere('last_name', 'like', '%'.$this->search.'%')
-                    ->orWhere('email', 'like', '%'.$this->search.'%')
-                    ->orWhere('birth_date', 'like', '%'.$this->search.'%')
-                    ->orderBy($this->sortField, $this->sortDirection)->paginate(10);
-        return view('livewire.student-list',compact('students'));
+        return view('livewire.create-subject',[
+            'subject' => Subject::where('name', 'like', '%'.$this->search.'%')->orderBy($this->sortField, $this->sortDirection)->paginate(10),
+        ]);
     }
 
     public function delete($id){
-        Student::where('id',$id)->delete();
+        Subject::where('id',$id)->delete();
+        toastr()->success('subject deleted successfully.');
     }
 }

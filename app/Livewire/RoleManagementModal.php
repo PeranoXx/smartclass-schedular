@@ -20,7 +20,7 @@ class RoleManagementModal extends ModalComponent
     public function submit(){
         
         $this->validate([
-            'name' => ['required', Rule::unique('roles')->ignore($this->role_id)],
+            'name' => ['required'],
         ]);
         if(!isset($this->role_id)){
             Role::create([

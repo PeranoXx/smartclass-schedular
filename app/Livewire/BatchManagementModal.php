@@ -23,7 +23,9 @@ class BatchManagementModal extends ModalComponent
     
     public function submit(){
         $this->validate([
-            'name' => ['required', Rule::unique('batches')->ignore($this->batch_id)],
+            'name' => ['required',  Rule::unique('class_rooms')->where(function ($query) {
+                $query->where('institute_id', authUser()->id);
+            })->ignore($this->batch_id)],
         ]);
         if(!isset($this->batch_id)){
             Batch::create([

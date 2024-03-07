@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Role;
 use App\Models\User;
 use Flasher\Laravel\Http\Request;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -49,14 +50,20 @@ class CreateUser extends Component
     }
 
     public function submit(){
+
+        $this->role = $this->role == 0 ? "" : $this->role;
         $rules = [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'contact_number' => 'required|unique:users|min:10|numeric',
-            'email' => 'required|unique:users|email',
-            'gender' => 'required|string|in:male,female,others',
-            'birth_date' => 'required',
-            'photo' => 'required|image'
+            'first_name' => ['required'],
+            'last_name' => ['required'],
+            'contact_number' =>[ 'required','min:10','numeric', Rule::unique('users')->where(function ($query) {
+                $query->where('institute_id', authUser()->id);
+            })->ignore($this->id)],
+            'email' => ['required','email', Rule::unique('users')->where(function ($query) {
+                $query->where('institute_id', authUser()->id);
+            })->ignore($this->id)],
+            'gender' => ['required','string','in:male,female,others'],
+            'birth_date' => ['required'],
+            'role' => ['required'],
         ];
         if (!$this->id) {
             $rules['password'] = 'required|min:8';
@@ -95,9 +102,10 @@ class CreateUser extends Component
                 'birth_date' => $this->birth_date,
                 'image' => $imageName
             ]);
+            // $user->assignRole($this->role);
             toastr()->success("User updated successfully");
+            return redirect()->route('user-management.index');
          }
-         return redirect()->route('user-management.index');
         }catch(\Exception $e){
             toastr()->error($e->getMessage());
         }
