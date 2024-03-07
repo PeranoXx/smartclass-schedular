@@ -3,6 +3,7 @@
 namespace App\Livewire\lecture;
 
 use App\Models\LactureTiming;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class CreateLactureTiming extends Component
@@ -48,24 +49,15 @@ class CreateLactureTiming extends Component
     }
 
     public function submit(){
-
-        $obj = (object)$this->weeks;
-        // dd($obj);
-
+        // dd($this->weeks);
         $this->validate([
             'lacture_name' => ['required'],
-            'start_time' => ['required' , 'date_format:H:i', 'unique:lacture_timings'],
-            'end_time' => ['required' , 'date_format:H:i' , 'after:start_time'],
+            'start_time' => ['required' ,  Rule::unique('lacture_timings')->where(function ($query) {
+                $query->where('institute_id', authUser()->id);
+            })->ignore($this->id)],
+            'end_time' => ['required' , 'after:start_time'],
             'weeks' => ['required']
         ]);
-
-        // $daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-        $resultArray = [];
-        foreach ($this->weeks as $day) {
-            $status = in_array($day, $this->weeks);
-            $resultArray = [$day, $status];
-        }
-        $this->resultObject = json_encode($resultArray);
 
         if (!$this->id) {
             LactureTiming::create([
@@ -74,7 +66,7 @@ class CreateLactureTiming extends Component
                 'lacture_name' => $this->lacture_name,
                 'start_time' => $this->start_time,
                 'end_time' => $this->end_time,
-                'weeks' => $this->resultObject,
+                'weeks' => json_encode($this->weeks),
                 'is_break' => $this->is_break
             ]);
             toastr()->success('lacture timing created successfully.');
@@ -86,7 +78,7 @@ class CreateLactureTiming extends Component
                 'lacture_name' => $this->lacture_name,
                 'start_time' => $this->start_time,
                 'end_time' => $this->end_time,
-                'weeks' => $this->resultObject,
+                'weeks' => json_encode($this->weeks),
                 'is_break' => $this->is_break
             ]);
             toastr()->success('lacture timing updated successfully.');
