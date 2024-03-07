@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('main')
-    <livewire:StudentList />
+    <livewire:student.StudentList />
 @endsection

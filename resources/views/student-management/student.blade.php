@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('main')
-    <livewire:StudentCreate :id="$id" />
+    <livewire:student.StudentCreate :id="$id" />
 @endsection

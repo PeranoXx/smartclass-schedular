@@ -2,6 +2,6 @@
 
 @section('main')
 <div>
-    <livewire:InstituteSignIn /> 
+    <livewire:institute.InstituteSignIn /> 
   </div>
 @endsection

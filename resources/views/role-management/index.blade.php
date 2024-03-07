@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('main')
-    <livewire:CreateRole />
+    <livewire:role.CreateRole />
 @endsection

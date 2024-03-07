@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('main')
-    <livewire:UserAssignSubject :id="$id" />
+    <livewire:user.UserAssignSubject :id="$id" />
 @endsection

@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('main')
-    <livewire:CreateSubject />
+    <livewire:subject.CreateSubject />
 @endsection

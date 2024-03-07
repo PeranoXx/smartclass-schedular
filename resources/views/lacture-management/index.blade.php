@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('main')
-    <livewire:LactureTiming />
+    <livewire:lecture.LactureTiming />
 @endsection

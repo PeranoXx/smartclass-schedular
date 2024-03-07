@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('main')
-    <livewire:CreateBatch />
+    <livewire:batch.CreateBatch />
 @endsection
