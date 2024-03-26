@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-class Subject extends Model
+class AssignLecture extends Model
 {
     use HasFactory;
 
-    protected $table = 'subjects';
+    protected $table = 'assign_lactures';
 
     protected $guarded = ['id'];
 
@@ -25,16 +25,11 @@ class Subject extends Model
 
     public function class_room()
     {
-        return $this->hasOne(ClassRoom::class,'id','class_room_id');
+        return $this->belongsTo(ClassRoom::class,'class_room_id','id');
     }
 
-    public function user_assign_subject()
+    public function subject()
     {
-        return $this->hasMany(UserAssignSubject::class,'id', 'subject_id');
-    }
-
-    public function assign_lecture()
-    {
-        return $this->hasMany(AssignLecture::class,'id', 'subject_id');
+        return $this->belongsTo(Subject::class,'subject_id','id');
     }
 }

@@ -9,8 +9,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
-use App\Models\ClassRoom;
-use App\Models\Subject;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/', function(){
     return redirect('sign-up');
 });
@@ -30,6 +29,14 @@ Route::get('/', function(){
 Route::middleware('guest:institute')->group(function(){  
     Route::get('sign-up', [AuthController::class, 'signUp'])->name('sign-up');
     Route::get('sign-in', [AuthController::class, 'signIn'])->name('sign-in');
+});
+
+Route::middleware('web')->group(function(){
+    Route::get('faculty/sign-in' , [AuthController::class, 'facultySignin'])->name('faculty-sign-in');
+});
+
+Route::middleware('student')->group(function(){
+    Route::get('student/sign-in' , [AuthController::class, 'studentSignin'])->name('student-sign-in');
 });
 
 Route::get('verify-email', [AuthController::class, 'verifyEmail'])->name('email-verify');
@@ -49,6 +56,11 @@ Route::middleware('auth')->group(function(){
     Route::get('institute/subject-management',[SubjectController::class,'create'])->name('subject-management.index');
     Route::get('institute/lacture-management',[LactureTiming::class,'show'])->name('lacture-management.index');
     Route::get('institute/lacture-management/create-lacture/{id?}',[LactureTiming::class,'create'])->name('lacture-management.create');
+    Route::get('institute/assign-lecture',[LactureTiming::class,'createLecture'])->name('assign-lecture.create');
+    Route::get('faculty/profile', [UserController::class,'profile'])->name('faculty.profile');
+    Route::get('Faculty/password', [UserController::class,'password'])->name('faculty.password');
+    Route::get('student/profile', [StudentController::class,'profile'])->name('student.profile');
+    Route::get('student/password', [StudentController::class,'password'])->name('student.password');
     Route::get('/dashboard', function () {
         return view('welcome');
     })->name('dashboard');

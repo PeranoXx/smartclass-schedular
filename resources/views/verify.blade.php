@@ -1,5 +1,5 @@
 @extends('layouts.otp')
 
 @section('main')
-    <livewire:otp />
+    <livewire:institute.otp />
 @endsection

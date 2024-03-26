@@ -43,7 +43,12 @@ return [
 
         'institute' => [
             'driver' => 'session',
-            'provider' => 'institutes'
+            'provider' => 'institutes',
+        ],
+
+        'student' => [
+            'driver' => 'session',
+            'provider' => 'students',
         ]
     ],
 
@@ -73,6 +78,11 @@ return [
         'institutes' => [
             'driver' => 'eloquent',
             'model' => App\Models\Institute::class,
+        ],
+
+        'students' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Student::class,
         ],
 
         // 'users' => [

@@ -68,7 +68,7 @@ class StudentCreate extends Component
     }
     
     public function submit(){
-        dd($this->class_room);
+        // dd($this->class_room);
         // dd($this->class);
         // dd($this->father_contact_number);
         $rules = [
@@ -118,7 +118,7 @@ class StudentCreate extends Component
                 'mother_contact_number' => $this->mother_contact_number,
                 'contact_number' => $this->contact_number,
                 'email' => $this->email,
-                'password' => $this->password,
+                'password' => bcrypt($this->password),
                 'gender' => $this->gender,
                 'birth_date' => $this->birth_date,
                 'image' => $imageName,
@@ -146,7 +146,7 @@ class StudentCreate extends Component
             return redirect()->route('student-management.index');
         }
     } catch (\Exception $e) {
-        dd($e);
+        // dd($e);
     }
     }
     public function removeImage(){

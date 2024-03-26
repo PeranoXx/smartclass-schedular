@@ -31,10 +31,10 @@
             account here</button> --}}
         </div>
         <div class="static z-10 flex gap-x-10 mb-20">
-          <a href="">
+          <a href="{{route('faculty-sign-in')}}">
             <x-button>Faculty Login</x-button>
           </a>
-          <a href="">
+          <a href="{{route('student-sign-in')}}">
             <x-button>Student Login</x-button>
           </a>
         </div>

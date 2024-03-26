@@ -98,23 +98,21 @@
                         @error('birth_date') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
                     </div>
                 </div>
-                <div class="border border-gray-400">
-                    <label>select class :</label>
-                    <select wire:model.live="class_room">
-                        <option value="0" disabled selected>Please select class</option>
+                <div class="">
+                    <x-select wire:model.live="class_room" label="Select Class">
+                        <option value="0" disabled selected></option>
                         @foreach ($class_data as $class_room)
                             <option value="{{$class_room->id}}">{{$class_room->name}}</option>
                         @endforeach
-                    </select>
+                    </x-select>
                 </div>
-                <div class="border border-gray-400">
-                    <label>select batch :</label>
-                    <select wire:model.live="batch_id" wire:key="{{$class_room}}">
-                        <option value="0" disabled selected>Please select batch</option>
+                <div class="">
+                    <x-select wire:model.live="batch_id" label="Select Batch" wire:key="{{$class_room}}">
+                        <option value="0" disabled selected></option>
                         @foreach ($batch as $data)
                             <option value="{{$data->id}}">{{$data->name}}</option>
                         @endforeach
-                    </select>
+                    </x-select>
                 </div>
                 <div class="bg-white col-span-2 w-full mb-5">
                     <div

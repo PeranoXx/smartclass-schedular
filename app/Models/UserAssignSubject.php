@@ -14,15 +14,6 @@ class UserAssignSubject extends Model
 
     protected $guarded = ['id'];
 
-    // protected static function booted(): void
-    // {
-    //     if(auth('institute')->check()){
-    //         static::addGlobalScope('institute', function (Builder $builder) {
-    //             $builder->where('institute_id', authUser()->id);
-    //         });
-    //     }
-    // }
-
     public function class_room()
     {
         return $this->belongsTo(ClassRoom::class,'class_room_id','id');

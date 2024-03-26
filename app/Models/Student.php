@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Student extends Authenticatable
 {
     use HasFactory;
 
@@ -21,5 +23,10 @@ class Student extends Model
                 $builder->where('institute_id', authUser()->id);
             });
         }
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
     }
 }

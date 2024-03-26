@@ -2,14 +2,13 @@
     <div class="bg-white shadow-lg">
         <div class="p-5 text-center">
             <h1 class="text-3xl font-bold">Assign Subject</h1>
-            <div class="mt-5 w-1/3 text-center bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2.5 block appearance-none leading-normal focus:border-gray-800">
-                <label class="">Select subject :</label>
-                <select wire:model.live="subject_id" class="">
-                    <option value="0" disabled selected>Please select subject</option>
+            <div class="mt-5 w-1/3 text-center bg-white focus:outline-none focus:shadow-outline ">
+                <x-select wire:model.live="subject_id" label="Select Subject">
+                    <option value="0" disabled selected></option>
                     @foreach ($subject_data as $data)
                         <option value="{{$data->id}}">{{$data->name}}</option>
                     @endforeach
-                </select>
+                </x-select>
             </div>
             <div class="mt-5 mx-5 flex justify-start">
                 <x-button style="margin:10px" onclick="window.location='{{route('class-management.index')}}'">Cancle</x-button>

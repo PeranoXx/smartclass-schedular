@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('main')
-    <h1> hello {{authUser()->id}}</h1> 
+    <livewire:lecture.CreateLecture/>
 @endsection

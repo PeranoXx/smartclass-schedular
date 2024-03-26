@@ -39,7 +39,6 @@ class UserAssignSubject extends Component
     }
     
     public function submit(){
-        // dd($this->subject);
         $this->class_room = $this->class_room == 0 ? "" : $this->class_room;
         $this->batch_id = $this->batch_id == 0 ? "" : $this->batch_id;
         $this->subject = $this->subject == 0 ? "" : $this->subject;

@@ -92,6 +92,7 @@ class CreateUser extends Component
             $user->assignRole($this->role);
             // dd($this->role);
             toastr()->success("User created successfully");
+            return redirect()->route('user-management.index');
          }else {
             $user = User::where('id', $this->id )->update([
                 'first_name' => $this->first_name,

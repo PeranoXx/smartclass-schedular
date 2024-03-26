@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Livewire\institute;
+namespace App\Livewire\student;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class InstituteSignIn extends Component
+class StudentSignIn extends Component
 {
     public $email;
     public $password;
@@ -14,15 +14,16 @@ class InstituteSignIn extends Component
         'email' => 'required',
         'password' => 'required'
     ];
-     
+
     public function render()
     {
-        return view('livewire.institute.institute-sign-in');
+
+        return view('livewire.student.student-sign-in');
     }
 
     public function submit(){
         $this->validate();
-        if (Auth::guard('institute')->attempt(['email' => $this->email, 'password' => $this->password])) {
+        if (Auth::guard('student')->attempt(['email' => $this->email, 'password' => $this->password])) {
             toastr()->success('Sign in successfully.');
             return redirect()->route('dashboard');
         }else{

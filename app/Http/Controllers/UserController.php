@@ -21,4 +21,12 @@ class UserController extends Controller
     public function createSubject(Request $request, $id = NULL){
         return view('user-management.assign-subject', ['id' => $id]);
     }
+
+    public function profile(){
+        return view('user-management.faculty-profile');
+    }
+
+    public function password(){
+        return view('user-management.faculty-password');
+    }
 }

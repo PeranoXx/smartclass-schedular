@@ -10,14 +10,14 @@
         </div>
         <div class="p-5">
             <form wire:submit.prevent="submit" class="">
-                <div class="border border-gray-400">
-                    <label>select class :</label>
-                    <select wire:model="class">
-                        <option value="0" disabled selected>Please select class</option>
+                <div class="">
+                    
+                    <x-select wire:model="class" label="Select Class">
+                        <option value="0" disabled selected></option>
                         @foreach ($class_data as $data)
                             <option value="{{$data->id}}">{{$data->name}}</option>
                         @endforeach
-                    </select>
+                    </x-select>
                 </div>
                 <div class="mt-4 mb-4 flex flex-col gap-6">
                     <div>

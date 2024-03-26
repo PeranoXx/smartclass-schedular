@@ -29,4 +29,8 @@ class LactureTiming extends Component
         $lacture_data = ModelsLactureTiming::get();
         return view('livewire.lecture.lacture-timing', compact('lacture_data'));
     }
+
+    public function delete($id){
+        ModelsLactureTiming::where('id',$id)->delete();
+    }
 }

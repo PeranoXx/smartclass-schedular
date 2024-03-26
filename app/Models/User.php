@@ -34,6 +34,11 @@ class User extends Authenticatable
         }
     }
 
+    public function getNameAttribute()
+    {
+        return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

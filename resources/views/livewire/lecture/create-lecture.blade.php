@@ -1,6 +1,6 @@
 <div>
     <div class="flex justify-end">
-        <x-button class="mt-1" onclick="window.location='{{route('lacture-management.create')}}'">Create Lacture Timing</x-button>
+        <x-button class="mt-1" onclick="Livewire.dispatch('openModal', { component: 'lecture.create-lecture-modal' })">Assign Lecture</x-button>
     </div>
     <div class="relative w-1/5">
         <input wire:model.live="search" placeholder="search..."
@@ -20,35 +20,32 @@
                     {{-- <x-table.heading wire:click="sortBy('id')" :direction="$sortField == 'id' ? $sortDirection : null"
                         sortable>Id</x-table.heading> --}}
                     <x-table.heading wire:click="sortBy('lacture_name')"
-                        :direction="$sortField == 'first_name' ? $sortDirection : null" sortable>Lacture Name
+                        :direction="$sortField == 'first_name' ? $sortDirection : null" sortable>Class
                     </x-table.heading>
                     <x-table.heading wire:click="sortBy('start_time')"
-                        :direction="$sortField == 'first_name' ? $sortDirection : null" sortable>Start Time
+                        :direction="$sortField == 'first_name' ? $sortDirection : null" sortable>Subject
                     </x-table.heading>
                     <x-table.heading wire:click="sortBy('end_time')"
-                        :direction="$sortField == 'email' ? $sortDirection : null" sortable>End Time</x-table.heading>
+                        :direction="$sortField == 'email' ? $sortDirection : null" sortable>Number Of Lactures</x-table.heading>
                     <x-table.heading wire:click="sortBy('gender')"
-                        :direction="$sortField == 'gender' ? $sortDirection : null" sortable>Is Break</x-table.heading>
-                    <x-table.heading wire:click="sortBy('role')"
-                        :direction="$sortField == 'gender' ? $sortDirection : null" sortable>Weeks</x-table.heading>
+                        :direction="$sortField == 'gender' ? $sortDirection : null" sortable>Action</x-table.heading>
                 </x-slot>
 
                 <x-slot name="body">
-                    @foreach ($lacture_data as $data)
+                    @foreach ($assign_lecture as $data)
                     <x-table.row>
-                        <x-table.cell>{{ $data->lacture_name }}</x-table.cell> 
-                        <x-table.cell>{{ $data->start_time }}</x-tablecell> 
-                        <x-table.cell>{{ $data->end_time }}</x-table.cell> 
-                        <x-table.cell>{{ $data->is_break }}</x-table.cell> 
+                        <x-table.cell>{{ $data->class_room->name }}</x-table.cell> 
+                        <x-table.cell>{{ $data->subject->name }}</x-tablecell> 
+                        <x-table.cell>{{ $data->no_of_lectures }}</x-table.cell> 
                         <x-table.cell>
                             <div class="flex gap-x-4 items-center">
-                                    <a href="{{route('lacture-management.create', ['id' => $data->id])}}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                                        </svg>
-                                    </a>
+                                <button
+                                onclick="Livewire.dispatch('openModal', { component: 'lecture.create-lecture-modal', arguments: { lecture_id: {{ $data->id }} , name: '{{$data->no_of_lectures}}' }})"
+                                class="">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                                  </svg>
+                            </button>
                                 <button class="flex" wire:click="delete('{{$data->id}}')" class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">

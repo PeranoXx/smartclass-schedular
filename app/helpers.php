@@ -8,5 +8,8 @@ if(!function_exists('authUser')){
         if(auth('institute')->check()){
             return auth('institute')->user();
         }
+        if(auth('student')->check()){
+            return auth('student')->user();
+        }
     }
 }

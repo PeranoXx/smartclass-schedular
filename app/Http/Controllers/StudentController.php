@@ -13,4 +13,11 @@ class StudentController extends Controller
     public function create(Request $request, $id = NULL){
         return view('student-management.student', ['id' => $id]);
     }
+
+    public function profile(){
+        return view('student-management.student-profile');
+    }
+    public function password(){
+        return view('student-management.student-password');
+    }
 }

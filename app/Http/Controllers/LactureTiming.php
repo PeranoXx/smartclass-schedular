@@ -13,4 +13,8 @@ class LactureTiming extends Controller
     public function create(Request $request, $id = NULL){
         return view('lacture-management.create', ['id' => $id]);
     }
+
+    public function createLecture(){
+        return view('lacture-management.create-lacture');
+    }
 }

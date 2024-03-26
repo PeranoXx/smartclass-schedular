@@ -21,9 +21,26 @@ class Authenticate
                 return redirect()->route('email-verify');
             }
         }
-        if (!Auth::guard('institute')->check()) {
+
+        if(Auth::guard('web')->check() || Auth::guard('institute')->check() || Auth::guard('student')->check()){
+            return $next($request);
+        }else{
             return redirect('sign-in');
+            // return $next($request);
         }
-        return $next($request);
+
+        // if (!Auth::guard('institute')->check()) {
+        //     return redirect('sign-in');
+        // }else{
+        //     return $next($request);
+        // }
+
+        // if (!Auth::guard('student')->check()) {
+        //     dd('here');
+        //     return redirect('student-sign-in');
+        // }else{
+        //     dd('helloo');
+        //     return $next($request);
+        // }
     }
 }

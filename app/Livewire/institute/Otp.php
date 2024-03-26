@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\institute;
 
 use App\Models\Institute;
 use App\Notifications\OneTimePasswordNotification;
@@ -19,7 +19,7 @@ class Otp extends Component
 
     public function render()
     {
-        return view('livewire.otp');
+        return view('livewire.institute.otp');
     }
 
     public function submit(){

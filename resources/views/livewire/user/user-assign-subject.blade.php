@@ -3,43 +3,40 @@
         <div class="p-5 text-center">
             <h1 class="text-3xl font-bold">Assign Subject</h1>
             <div class="flex gap-3 ">
-                <div class="flex flex-col">
-                    <div class="mt-5 w-2/7 text-center bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2.5 block appearance-none leading-normal focus:border-gray-800">
-                        <label>select class :</label>
-                        <select wire:model.live="class_room" wire:change="change">
-                            <option value="0" disabled selected>Please select class</option>
+                <div class="flex flex-col w-full">
+                    <div class="mt-5">
+                        <x-select wire:model.live="class_room" label="Select Class" wire:change="change">
+                            <option value="0" disabled selected></option>
                             @foreach ($class_data as $class_room)
                                 <option value="{{$class_room->id}}">{{$class_room->name}}</option>
                             @endforeach
-                        </select>
+                        </x-select>
                     </div>
                     <div class="flex jusrrtify-start">
                         @error('class_room') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
                     </div>
                 </div>
-                <div class="flex flex-col">
-                    <div class="mt-5 w-2/7 text-center bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2.5 block appearance-none leading-normal focus:border-gray-800">
-                        <label>select batch :</label>
-                        <select wire:model.live="batch_id" wire:key="{{$class_room}}">
-                            <option value="0" disabled selected>Please select batch</option>
+                <div class="flex flex-col w-full">
+                    <div class="mt-5 ">
+                        <x-select wire:model.live="batch_id" label="Select Batch" wire:key="{{$class_room}}">
+                            <option value="0" disabled selected></option>
                             @foreach ($batch as $data)
                                 <option value="{{$data->id}}">{{$data->name}}</option>
                             @endforeach
-                        </select>
+                        </x-select>
                     </div>
                     <div class="flex jusrrtify-start">
                         @error('batch_id') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
                     </div>
                 </div>
-                <div class="flex flex-col">
-                    <div class="mt-5 w-2/7 text-center bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2.5 block appearance-none leading-normal focus:border-gray-800">
-                        <label class="">Select subject :</label>
-                        <select wire:model.live="subject" wire:key="{{$class_room}}">
-                            <option value="0" disabled selected>Please select subject</option>
+                <div class="flex flex-col w-full">
+                    <div class="mt-5">
+                        <x-select wire:model.live="subject" label="Select Subject" wire:key="{{$class_room}}">
+                            <option value="0" disabled selected></option>
                             @foreach ($subjects??[] as $data)
                                 <option value="{{$data->subject_id}}">{{$data->subject->name}}</option>
                             @endforeach
-                        </select>
+                        </x-select>
                     </div>
                     <div class="flex jusrrtify-start">
                         @error('subject') <span class="text-pink-500 text-sm px-3">{{ $message }}</span> @enderror
